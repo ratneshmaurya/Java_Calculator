@@ -1,12 +1,11 @@
-package ApplyOops;
+package DebugAndHandleException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-//you are going to work on improving the Calculator application to 
-//support floating-point arithmetic calculations.
+import org.junit.jupiter.api.function.Executable;
 
 public class StandardCalculatorTest {
     private StandardCalculator standardCalculator;
@@ -17,7 +16,7 @@ public class StandardCalculatorTest {
     }
 
 
-    //testing for Integer values -- 
+    //Testing for normal Integer values ==============================
 
     @Test
     @DisplayName("Test Addition of Two Integers")
@@ -52,7 +51,7 @@ public class StandardCalculatorTest {
     }
 
 
-    //testing for double values also
+    //testing for double values also===============================
 
     
     @Test
@@ -86,6 +85,42 @@ public class StandardCalculatorTest {
         standardCalculator.multiply(3.0,5.0);
         double actualResult=standardCalculator.getResult();
         Assertions.assertEquals(15.0, actualResult);
+    }
+
+
+    //Testing for overflow(Error Handling Cases) of Double values =============================
+
+    //NOTE----Important
+    // Few observations we can make out of these new tests for add and subtract methods:
+    // A static assertThrows method of Assertions class currently accepts two parameters.
+    // First parameter indicates the type of exception the method being tested should throw.
+    // Second parameter is an Executable object which has an overridden execute() method wrapping the method being tested.
+    // These tests will PASS if and only if the exception is thrown for some scenarios and matches the Exception type 
+    //specified in the first parameter.
+        
+    @Test
+    @DisplayName("Test Addition Overflow of Two Doubles")
+    void testAdditionOverflowForDoubles(){
+        //Assert
+        Assertions.assertThrows(ArithmeticException.class,new Executable(){
+            @Override
+            public void execute() throws Throwable{
+                standardCalculator.add(Double.MAX_VALUE, Double.MAX_VALUE);
+            }
+        });
+    }
+
+
+    @Test
+    @DisplayName("Test Subtraction Overflow of Two Doubles")
+    void testSubtractionOverflowForDoubles(){
+        //Assert
+        Assertions.assertThrows(ArithmeticException.class,new Executable(){
+        @Override
+        public void execute() throws Throwable{
+                standardCalculator.subtract(-Double.MAX_VALUE,Double.MAX_VALUE);
+            }
+        });
     }
 
 }
