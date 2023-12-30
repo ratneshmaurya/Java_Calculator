@@ -1,4 +1,4 @@
-package DebugAndHandleException;
+package ApplyOops;
 
 public class App {
     public String getGreeting() {
