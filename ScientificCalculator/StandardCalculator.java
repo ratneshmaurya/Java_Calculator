@@ -1,4 +1,4 @@
-package DebugAndHandleException;
+package ScientificCalculator;
 
 //Base class is Standard Caclulator and Subclass is Scientific Calculator
 public class StandardCalculator {
