@@ -1,4 +1,4 @@
-package ScientificCalculator;
+package com.crio.qcalc;
 
 //Base class is Standard Caclulator and Subclass is Scientific Calculator
 public class StandardCalculator {
@@ -28,7 +28,7 @@ public class StandardCalculator {
 
         double result = num1 + num2;
 
-        if((result == Double.MAX_VALUE) || (result == Double.POSITIVE_INFINITY)){
+        if((result == Double.MAX_VALUE) || (result == Double.POSITIVE_INFINITY) || (result == Double.NEGATIVE_INFINITY)){
 
             throw new ArithmeticException("Double overflow");
 
@@ -57,7 +57,7 @@ public class StandardCalculator {
 
         double result = num1 - num2;
 
-        if((result == -Double.MAX_VALUE) || (result == Double.NEGATIVE_INFINITY)){
+        if((result == Double.MAX_VALUE) || (result == Double.POSITIVE_INFINITY) || (result == Double.NEGATIVE_INFINITY)){
 
             throw new ArithmeticException("Double overflow");
 
@@ -80,7 +80,7 @@ public class StandardCalculator {
         //result= num1*num2;
         double result = num1*num2;
 
-        if((result == -Double.MAX_VALUE) || (result == Double.NEGATIVE_INFINITY)){
+        if((result == Double.MAX_VALUE) || (result == Double.POSITIVE_INFINITY) || (result == Double.NEGATIVE_INFINITY)){
 
             throw new ArithmeticException("Double overflow");
 
@@ -99,10 +99,16 @@ public class StandardCalculator {
 
     //handling maxvalues exception
     public final void divide(double num1, double num2){
+
+        //throwing exception for divide by 0 
+        if(num2 == 0.0){
+            throw new ArithmeticException("Divide By Zero");
+        }
+
         //result= num1/num2;
         double result = num1/num2;
 
-        if((result == -Double.MAX_VALUE) || (result == Double.NEGATIVE_INFINITY)){
+        if((result == Double.MAX_VALUE) || (result == Double.POSITIVE_INFINITY) || (result == Double.NEGATIVE_INFINITY)){
 
             throw new ArithmeticException("Double overflow");
 
